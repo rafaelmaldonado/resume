@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV smoke checks</title>
+  <style>
+    body { margin: 24px; font: 15px/1.6 system-ui; color: #18202b; background: #f6f7f9; }
+    iframe { display: block; height: 844px; border: 1px solid #ccc; background: white; }
+    .pass { color: #186437; } .fail { color: #b41c13; }
+  </style>
+</head>
+<body>
+  <h1>CV smoke checks</h1>
+  <p id="status" role="status">Running…</p>
+  <ol id="results"></ol>
+  <iframe id="preview" title="CV under test" style="width:390px"></iframe>
+  <script>
+    const status = document.getElementById("status");
+    const results = document.getElementById("results");
+    const preview = document.getElementById("preview");
+    let checks = 0;
+    function assert(condition, message) {
+      const item = document.createElement("li");
+      item.textContent = (condition ? "PASS: " : "FAIL: ") + message;
+      item.className = condition ? "pass" : "fail";
+      results.append(item);
+      if (!condition) throw new Error(message);
+      checks++;
+    }
+    function contrast(first, second) {
+      const luminance = color => {
+        const values = color.match(/[\d.]+/g).slice(0, 3).map(Number).map(value => {
+          const channel = value / 255;
+          return channel <= 0.04045 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4);
+        });
+        return values[0] * 0.2126 + values[1] * 0.7152 + values[2] * 0.0722;
+      };
+      const values = [luminance(first), luminance(second)].sort((a, b) => b - a);
+      return (values[0] + 0.05) / (values[1] + 0.05);
+    }
+    function waitFor(win, predicate) {
+      return new Promise((resolve, reject) => {
+        const started = performance.now();
+        function check() {
+          if (predicate()) return resolve();
+          if (performance.now() - started > 5000) return reject(new Error("Timed out waiting for scroll behavior"));
+          win.requestAnimationFrame(check);
+        }
+        check();
+      });
+    }
+    async function run() {
+      try {
+        const ready = new Promise(resolve => preview.addEventListener("load", resolve, { once: true }));
+        preview.src = "../#experience";
+        await ready;
+        const win = preview.contentWindow;
+        const doc = win.document;
+        await win.loadContent();
+        await doc.fonts.ready;
+        const data = await (await fetch("../content.json", { cache: "no-store" })).json();
+        assert(!doc.getElementById("cv-content").hidden, "Résumé loads successfully");
+        assert(win.scrollY > 0 && doc.getElementById("experience").getBoundingClientRect().top < win.innerHeight, "A direct section link scrolls correctly after loading JSON");
+        assert(doc.querySelectorAll(".timeline > li").length === 12, "All 12 roles render");
+        assert([...doc.querySelectorAll(".timeline article")].every((article, index) => {
+          const role = data.experience.items[index];
+          return article.dataset.company === role.company && article.textContent.includes(role.role) &&
+            (!role.summary || article.textContent.includes(role.summary));
+        }), "Every displayed employer, role, and description matches the JSON");
+        assert(Number(data.stats.items[1].value) === data.experience.items.length, "Career statistic matches the history");
+        assert(data.experience.items[0].company === "Virtusa" && data.experience.items[0].role === "AEM Architect" && data.experience.items[0].startDate === "2026-08" && data.experience.items[0].endDate === "2026-10-30", "Virtusa shows AEM Architect from August to October 2026");
+        assert(data.experience.items[1].company === "Perficient" && data.experience.items[1].startDate === "2025-05" && data.experience.items[1].endDate === "2026-08", "Latest Perficient role runs May 2025–August 2026");
+        assert(doc.querySelectorAll(".credential-card").length === 2, "Both Adobe certifications render");
+        const featuredCredentials = [...doc.querySelectorAll("#hero-credentials li")];
+        assert(featuredCredentials.length === data.credentials.items.length && featuredCredentials.every((badge, index) => badge.textContent.includes(data.credentials.items[index].name)), "Master and Expert certifications are featured under the hero name");
+        const badges = [...doc.querySelectorAll("img.credential-badge")];
+        await Promise.all(badges.map(image => image.decode()));
+        assert(badges.length === 4 && badges.every((image, index) => image.naturalWidth > 0 && image.getAttribute("src") === data.credentials.items[index % 2].badge) && data.credentials.items.every(item => item.badge === "assets/adobe-certified-" + item.level.toLowerCase() + ".png"), "The supplied Master and Expert badges load with the matching certification in the hero and cards");
+        assert(doc.getElementById("hero-secondary").getAttribute("href") === "#credentials", "The hero has a direct credentials action");
+        assert(doc.getElementById("hero-eyebrow").textContent.includes("Mexico · Remote") && doc.getElementById("profile-location").textContent === "Mexico · Remote" && doc.getElementById("profile-specializations").textContent.includes("AEMaaCS") && !/Mérida|Yucatán/.test(doc.body.textContent + doc.querySelector('meta[name="description"]').content), "Location consistently presents Mexico and remote work, and the profile panel shows AEMaaCS");
+        const pdfDownload = doc.getElementById("hero-download");
+        const pdfResponse = await fetch(pdfDownload.href, { cache: "no-store" });
+        const pdfBytes = new Uint8Array(await pdfResponse.arrayBuffer());
+        assert(pdfDownload.download === "Rafael-Maldonado-CV.pdf" && pdfResponse.ok && new TextDecoder().decode(pdfBytes.slice(0, 5)) === "%PDF-", "The Download CV button points to an available PDF with a descriptive download filename");
+        const textDownload = doc.getElementById("hero-text");
+        const textResponse = await fetch(textDownload.href, { cache: "no-store" });
+        const resumeText = await textResponse.text();
+        const normalized = text => text.replace(/[·–—]/g, "-");
+        assert(textDownload.download === "Rafael-Maldonado-CV.txt" && textResponse.ok && [data.hero.name, data.hero.location, data.hero.intro, data.contact.email, ...data.skills.items.map(item => item.name)].every(value => resumeText.includes(normalized(value))) && data.experience.items.every(item => [item.role + " | " + item.company, win.dateElement(item.startDate).textContent, win.dateElement(item.endDate).textContent, item.summary, ...item.highlights, ...item.technologies].every(value => resumeText.includes(normalized(value)))) && data.credentials.items.every(item => [item.name, item.specialization, item.url, win.dateElement(item.renewedDate).textContent, win.dateElement(item.expirationDate).textContent].every(value => resumeText.includes(normalized(value)))), "The plain-text CV download preserves current profile, skills, all 12 roles, dates, highlights, technologies, and verified certifications from JSON");
+        assert(doc.getElementById("experience").nextElementSibling === doc.getElementById("credentials"), "The full credentials section appears immediately after the career history");
+        assert([...doc.querySelectorAll(".credential-card a")].length === 2 && [...doc.querySelectorAll(".credential-card a")].every(link => link.target === "_blank" && link.relList.contains("noopener") && link.relList.contains("noreferrer") && link.getAttribute("aria-label").includes("opens in a new tab")), "Certificate verification links open safely in a new tab with an accessible label");
+        const favicon = doc.querySelector('link[rel="icon"]');
+        const iconResponse = await fetch(favicon.href, { cache: "no-store" });
+        const icon = new win.DOMParser().parseFromString(await iconResponse.text(), "image/svg+xml");
+        assert(iconResponse.ok && favicon.type === "image/svg+xml" && !icon.querySelector("parsererror") && icon.querySelector("text").textContent === "RM", "The RM SVG favicon is linked, valid, and available");
+        const credentialDates = {
+          Master: { issued: "2020-08-08", expires: "2027-08-14" },
+          Expert: { issued: "2019-11-06", expires: "2027-08-14" }
+        };
+        data.credentials.items.forEach((credential, index) => {
+          const expected = credentialDates[credential.level];
+          const times = doc.querySelectorAll(".credential-card")[index].querySelectorAll("time");
+          const label = doc.querySelectorAll(".credential-card")[index].querySelector("dt").textContent;
+          assert(credential.issuedDate === expected.issued && credential.renewedDate === "2025" && credential.expirationDate === expected.expires && label === "Renewed" && times[0].dateTime === "2025" && times[1].dateTime === expected.expires && times[1].textContent.includes("14"), credential.level + " shows the 2025 renewal and verified expiry while preserving the original issue date");
+        });
+        assert(doc.getElementById("faq").textContent.includes("renewed in 2025") && !/2019|2020/.test(doc.getElementById("credentials").textContent + doc.getElementById("faq").textContent), "Public credentials and FAQ emphasize renewal and current validity");
+        assert(!doc.body.innerText.includes("TODO"), "No public placeholder text");
+        assert(doc.getElementById("testimonials").hidden && doc.getElementById("writing-community").hidden, "Sections without supplied content are hidden");
+        assert([...doc.querySelectorAll(".nav-links a")].every(link => doc.querySelector(link.getAttribute("href"))), "Every navigation link has a destination");
+        assert(doc.getElementById("hero-email").getAttribute("href") === "mailto:jr.maldonadoh@gmail.com", "Main contact points to the supplied email");
+        assert(!doc.getElementById("theme-toggle") && win.getComputedStyle(doc.documentElement).colorScheme === "light", "The site uses a fixed light theme without a theme toggle");
+        const bar = doc.getElementById("reading-progress").getBoundingClientRect();
+        assert(Math.abs(bar.top - doc.querySelector(".site-header").getBoundingClientRect().top) < 1 && bar.bottom <= doc.querySelector(".brand").getBoundingClientRect().top, "The reading progress bar sits above the menu");
+        const latestRoles = doc.querySelectorAll(".timeline article");
+        assert(["three-month", "global", "frontend developers", "AEM as a Cloud Service"].every(term => latestRoles[0].textContent.includes(term)), "Virtusa includes the three-month global frontend enablement program");
+        assert(["Edge Delivery Services", "Adobe App Builder", "Salesforce", "external APIs"].every(term => latestRoles[1].textContent.includes(term)), "The latest Perficient role includes EDS, App Builder and Salesforce API integrations");
+        assert(["Edge Delivery Services (EDS)", "Adobe App Builder", "Copilot"].every(term => doc.getElementById("skills-list").textContent.includes(term)), "The skills include EDS, App Builder and Copilot");
+        assert(["Anthropic", "Copilot"].every(term => doc.getElementById("expertise").textContent.includes(term)), "Expertise includes Anthropic architecture and Copilot-assisted engineering");
+        assert(!doc.getElementById("credentials").textContent.includes("Anthropic"), "The credentials section preserves the supplied awarded certifications");
+        for (const width of [320, 390, 768, 1280]) {
+          preview.style.width = width + "px";
+          const pageWidth = doc.documentElement.scrollWidth;
+          const overflowing = [...doc.querySelectorAll("main *, .site-header *, .site-footer *")].filter(el => {
+            const rect = el.getBoundingClientRect();
+            return rect.width > 0 && win.getComputedStyle(el).position !== "absolute" &&
+              (rect.left < -1 || rect.right > win.innerWidth + 1);
+          });
+          assert(pageWidth === win.innerWidth && overflowing.length === 0, "Light layout has no overflow at " + width + "px");
+        }
+        const style = win.getComputedStyle(doc.body);
+        const probe = doc.createElement("span");
+        probe.style.color = "var(--muted)";
+        doc.body.append(probe);
+        assert(contrast(style.color, style.backgroundColor) >= 4.5 && contrast(win.getComputedStyle(probe).color, style.backgroundColor) >= 4.5, "Body and secondary text contrast");
+        probe.remove();
+        preview.style.width = "390px";
+        const menu = doc.getElementById("menu-toggle");
+        menu.click();
+        assert(menu.getAttribute("aria-expanded") === "true" && win.getComputedStyle(doc.getElementById("primary-navigation")).display !== "none", "Mobile navigation opens");
+        menu.dispatchEvent(new win.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+        assert(menu.getAttribute("aria-expanded") === "false" && doc.activeElement === menu, "Escape closes the menu and restores focus");
+        menu.click();
+        doc.querySelector('.nav-links a[href="#about"]').click();
+        assert(menu.getAttribute("aria-expanded") === "false", "Choosing a section closes the mobile menu");
+        const faq = doc.querySelector("#faq details");
+        faq.querySelector("summary").click();
+        assert(faq.open, "FAQ opens with its native control");
+        faq.querySelector("summary").click();
+        assert(!faq.open, "FAQ closes with its native control");
+        preview.scrollIntoView({ block: "start", behavior: "instant" });
+        const progress = () => new win.DOMMatrix(win.getComputedStyle(doc.getElementById("reading-progress")).transform).a;
+        win.scrollTo({ top: 0, behavior: "instant" });
+        await waitFor(win, () => progress() === 0 && !doc.querySelector('.nav-links [aria-current="location"]'));
+        assert(progress() === 0, "Reading progress starts at zero above the sections");
+        const lastRole = doc.querySelector(".timeline > li:last-child");
+        assert(lastRole.classList.contains("reveal") && !lastRole.classList.contains("is-visible"), "Offscreen career content is ready for its entrance animation");
+        win.scrollTo({ top: lastRole.getBoundingClientRect().top + win.scrollY - 96, behavior: "instant" });
+        await waitFor(win, () => lastRole.classList.contains("is-visible") && Number(win.getComputedStyle(lastRole).opacity) > 0.99);
+        assert(lastRole.classList.contains("is-visible"), "Career entries reveal when they enter the viewport");
+        win.scrollTo({ top: 0, behavior: "instant" });
+        assert(lastRole.classList.contains("is-visible"), "Revealed content stays visible when scrolling back");
+        for (const link of doc.querySelectorAll('.nav-links a[href^="#"]')) {
+          preview.scrollIntoView({ block: "start", behavior: "instant" });
+          const section = doc.querySelector(link.getAttribute("href"));
+          win.scrollTo({ top: section.getBoundingClientRect().top + win.scrollY - 96, behavior: "instant" });
+          await waitFor(win, () => link.getAttribute("aria-current") === "location");
+          assert(doc.querySelectorAll('.nav-links [aria-current="location"]').length === 1, "Scroll selects only " + link.textContent);
+        }
+        win.scrollTo({ top: doc.documentElement.scrollHeight, behavior: "instant" });
+        await waitFor(win, () => progress() === 1);
+        assert(progress() === 1 && doc.querySelector('.nav-links [aria-current="location"]').hash === "#contact", "Bottom of the page shows full progress and selects Contact");
+        const about = doc.getElementById("about");
+        win.scrollTo({ top: about.getBoundingClientRect().top + win.scrollY - 96, behavior: "instant" });
+        await waitFor(win, () => progress() > 0 && progress() < 1);
+        const beforeExpansion = progress();
+        faq.querySelector("summary").click();
+        await waitFor(win, () => progress() < beforeExpansion);
+        assert(progress() < beforeExpansion, "Progress adjusts when an FAQ changes the document height");
+        faq.querySelector("summary").click();
+        const originalMatchMedia = win.matchMedia;
+        try {
+          win.matchMedia = () => ({ matches: true });
+          win.revealContent();
+          assert(!doc.querySelector(".reveal") && win.getComputedStyle(lastRole).opacity === "1", "Reduced motion leaves all content visible without entrance effects");
+        } finally {
+          win.matchMedia = originalMatchMedia;
+        }
+        const originalObserver = win.IntersectionObserver;
+        try {
+          win.IntersectionObserver = undefined;
+          win.revealContent();
+          assert(!doc.querySelector(".reveal"), "Content stays visible when IntersectionObserver is unavailable");
+        } finally {
+          win.IntersectionObserver = originalObserver;
+          win.revealContent();
+        }
+        assert(win.externalLink("Unsafe", "javascript:alert(1)") === null && win.externalLink("Pending", "TODO: link") === null, "Unsafe and placeholder links are rejected");
+        assert(!win.textElement("p", "<img src=x onerror=alert(1)>").querySelector("img"), "Content is inserted as text");
+        assert(win.dateElement("2026-08").dateTime === "2026-08" && win.dateElement("2025").dateTime === "2025" && win.dateElement("2025-02-30").tagName === "SPAN", "Partial dates remain valid and invalid dates stay plain text");
+        const originalFetch = win.fetch;
+        try {
+          win.fetch = async () => ({ ok: true, json: async () => ({ ...data, hero: { ...data.hero, intro: "Updated résumé content" } }) });
+          await win.loadContent();
+          assert(doc.getElementById("hero-intro").textContent === "Updated résumé content", "The page actually renders changes received from the JSON");
+          win.fetch = async () => ({ ok: true, json: async () => ({ ...data, credentials: { ...data.credentials, items: data.credentials.items.map(({ renewedDate, ...credential }) => credential) } }) });
+          await win.loadContent();
+          assert([...doc.querySelectorAll(".credential-card")].every((card, index) => card.querySelector("dt").textContent === "Issued" && card.querySelector("time").dateTime === data.credentials.items[index].issuedDate), "Credentials without a renewal still show their original issue date");
+          win.fetch = async () => ({ ok: false });
+          await win.loadContent();
+          assert(doc.getElementById("content-status").textContent.includes("could not be loaded"), "Content request failures keep the error fallback");
+        } finally {
+          win.fetch = originalFetch;
+          await win.loadContent();
+        }
+        assert(doc.querySelectorAll(".timeline > li").length === 12, "Reloading content does not duplicate the history");
+        status.textContent = checks + " checks passed.";
+        status.dataset.result = "passed";
+      } catch (error) {
+        status.textContent = "Failed: " + error.message;
+        status.dataset.result = "failed";
+      }
+    }
+    run();
+  </script>
+</body>
+</html>

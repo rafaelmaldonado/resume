@@ -1,0 +1,500 @@
+{
+  "page": {
+    "language": "en",
+    "title": "Rafael Maldonado | Digital Experience & AI Architecture",
+    "description": "Remote architect based in Mexico. AEM as a Cloud Service, Edge Delivery Services, Adobe App Builder, Salesforce API integration, global technical enablement, and a focus on Anthropic architecture."
+  },
+  "hero": {
+    "name": "Rafael Maldonado",
+    "role": "AEM Architect & Technical Enablement",
+    "tagline": "Digital platforms. Enterprise integrations. AI.",
+    "location": "Mexico · Remote",
+    "availability": "Open to remote AEM roles",
+    "intro": "I build and connect digital experience platforms with AEM Sites, Edge Delivery Services, and Adobe App Builder. My focus spans enterprise API integrations, global technical enablement, and AI-assisted engineering.",
+    "primaryAction": "Let's talk architecture",
+    "secondaryAction": "View credentials",
+    "downloadAction": "Download CV (PDF)",
+    "textAction": "Plain text (.txt)",
+    "profileLabel": "Architecture & engineering",
+    "initials": "RM",
+    "credentialSummary": "Platforms, APIs & AI",
+    "credentialDetail": "AEM Sites · AEMaaCS · EDS · App Builder · Anthropic"
+  },
+  "stats": {
+    "title": "Experience at a glance",
+    "items": [
+      {
+        "label": "Working with AEM since",
+        "value": "2013"
+      },
+      {
+        "label": "Roles across my career",
+        "value": "12"
+      },
+      {
+        "label": "Professional certifications",
+        "value": "2"
+      },
+      {
+        "label": "People managed, up to",
+        "value": "10"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Tools of the trade",
+    "items": [
+      {
+        "name": "AEM Sites"
+      },
+      {
+        "name": "AEM as a Cloud Service (AEMaaCS)"
+      },
+      {
+        "name": "Edge Delivery Services (EDS)"
+      },
+      {
+        "name": "Adobe App Builder"
+      },
+      {
+        "name": "Java"
+      },
+      {
+        "name": "JavaScript"
+      },
+      {
+        "name": "OSGi / Apache Felix"
+      },
+      {
+        "name": "Apache Sling"
+      },
+      {
+        "name": "CRX / Apache Jackrabbit"
+      },
+      {
+        "name": "Sling Models"
+      },
+      {
+        "name": "Sling Servlets"
+      },
+      {
+        "name": "REST API Integration"
+      },
+      {
+        "name": "Salesforce Integration"
+      },
+      {
+        "name": "XML"
+      },
+      {
+        "name": "Copilot · AI-assisted development"
+      },
+      {
+        "name": "Anthropic Architecture"
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Architecture across platforms.\nEnablement across teams.",
+    "paragraphs": [
+      "I'm an architect and engineer based in Mexico, working remotely across platform architecture, frontend and backend development, modernization, and production support.",
+      "I work across AEM Sites, Edge Delivery Services, and Adobe App Builder, connecting platforms through external APIs, including Salesforce. My technical focus also includes Anthropic architecture and Copilot-assisted software engineering.",
+      "At Virtusa, I delivered a three-month AEM Sites technical enablement program for a global team of frontend developers, focused on AEM as a Cloud Service. Earlier roles included managing developers and support engineers and creating practical AEM training material."
+    ],
+    "factsTitle": "At a glance",
+    "facts": [
+      {
+        "label": "Focus",
+        "value": "Digital platforms & enterprise integration"
+      },
+      {
+        "label": "Platforms",
+        "value": "AEM Sites, EDS & Adobe App Builder"
+      },
+      {
+        "label": "AI engineering",
+        "value": "Anthropic architecture & Copilot"
+      },
+      {
+        "label": "Based in",
+        "value": "Mexico · Remote"
+      }
+    ]
+  },
+  "expertise": {
+    "eyebrow": "Core expertise",
+    "title": "Platforms. Integrations. Enablement.",
+    "items": [
+      {
+        "title": "AEM & cloud architecture",
+        "description": "Architecture and modernization across AEM Sites, AEM 6.5, and AEM as a Cloud Service, including platform services, authoring, and migrations.",
+        "tags": [
+          "AEM Sites",
+          "AEM as a Cloud Service",
+          "Dispatcher",
+          "Architecture"
+        ]
+      },
+      {
+        "title": "Edge Delivery Services",
+        "description": "Hands-on experience with Edge Delivery Services alongside AEM development and enterprise integration work at Perficient.",
+        "tags": [
+          "Edge Delivery Services",
+          "AEM",
+          "Frontend engineering"
+        ]
+      },
+      {
+        "title": "App Builder & API integration",
+        "description": "Extending digital experience platforms with Adobe App Builder and multiple external API integrations, with a particular focus on Salesforce.",
+        "tags": [
+          "Adobe App Builder",
+          "External APIs",
+          "Salesforce",
+          "REST"
+        ]
+      },
+      {
+        "title": "Java & platform engineering",
+        "description": "Frontend and backend engineering with Java, JavaScript, Sling Models and Servlets, OSGi services, HTL components, and automated tests.",
+        "tags": [
+          "Java",
+          "JavaScript",
+          "Sling",
+          "OSGi",
+          "HTL",
+          "JUnit"
+        ]
+      },
+      {
+        "title": "AI-assisted software engineering",
+        "description": "A technical focus on Anthropic architecture and Copilot-assisted development, alongside hands-on Java and JavaScript engineering.",
+        "tags": [
+          "Anthropic",
+          "Copilot",
+          "AI-assisted engineering"
+        ]
+      },
+      {
+        "title": "Global technical enablement",
+        "description": "Delivered a three-month AEM Sites enablement program for a global frontend development team, focused on AEM as a Cloud Service.",
+        "tags": [
+          "Technical enablement",
+          "Global teams",
+          "Frontend development",
+          "AEMaaCS"
+        ]
+      }
+    ]
+  },
+  "inDepth": {
+    "eyebrow": "In practice",
+    "title": "A closer look at the work.",
+    "items": [
+      {
+        "title": "Enabling a global frontend team",
+        "summary": "At Virtusa, I delivered a three-month technical enablement program for a global team of frontend developers.",
+        "paragraphs": [
+          "The program focused on AEM Sites for AEM as a Cloud Service, bringing AEM platform knowledge into a global frontend engineering context."
+        ]
+      },
+      {
+        "title": "Connecting experience platforms to enterprise APIs",
+        "summary": "At Perficient, my work included Edge Delivery Services, Adobe App Builder, and multiple external API integrations.",
+        "paragraphs": [
+          "Salesforce was a particular focus within that integration work, alongside AEM development and automated testing with JUnit, Mockito, and JaCoCo."
+        ]
+      },
+      {
+        "title": "Modernizing a CQ5 implementation",
+        "summary": "At Talos Digital, I worked on an upgrade from CQ5 to AEM 6.5.",
+        "paragraphs": [
+          "The work included Groovy scripts to migrate content and tags, along with updates to dialogs, components, and backend classes. Other projects involved Sling Models, Servlets, proxy components, and content and experience fragments."
+        ]
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "A career built on the web.",
+    "technologiesLabel": "Technologies",
+    "items": [
+      {
+        "role": "AEM Architect",
+        "company": "Virtusa",
+        "location": "",
+        "startDate": "2026-08",
+        "endDate": "2026-10-30",
+        "summary": "Delivered a three-month AEM Sites technical enablement program for a global team of frontend developers, focused on AEM as a Cloud Service.",
+        "highlights": [],
+        "technologies": [
+          "AEM Sites",
+          "AEM as a Cloud Service",
+          "Technical Enablement",
+          "Frontend Development"
+        ]
+      },
+      {
+        "role": "Lead AEM Developer",
+        "company": "Perficient",
+        "location": "",
+        "startDate": "2025-05",
+        "endDate": "2026-08",
+        "summary": "Worked across AEM, Edge Delivery Services, and Adobe App Builder, combining platform development, enterprise integration, and automated testing.",
+        "highlights": [
+          "Delivered multiple integrations with external APIs, with a particular focus on Salesforce.",
+          "Extended unit test coverage with JUnit and Mockito and added JaCoCo reporting to the Maven build.",
+          "Developed new AEM components."
+        ],
+        "technologies": [
+          "AEM",
+          "Edge Delivery Services",
+          "Adobe App Builder",
+          "External APIs",
+          "Salesforce",
+          "JUnit",
+          "Mockito",
+          "JaCoCo",
+          "Maven"
+        ]
+      },
+      {
+        "role": "Senior AEM Developer",
+        "company": "3Share",
+        "location": "",
+        "startDate": "2024-11",
+        "endDate": "2025-04",
+        "summary": "Contributed to a migration from AEM 6.5 to AEM as a Cloud Service, moving content, running the Best Practices Analyzer, and updating microsites.",
+        "highlights": [],
+        "technologies": [
+          "AEM 6.5",
+          "AEM as a Cloud Service",
+          "BPA"
+        ]
+      },
+      {
+        "role": "AEM Developer",
+        "company": "3Pillar Global",
+        "location": "",
+        "startDate": "2023-03",
+        "endDate": "2024-11",
+        "summary": "Created AEM components, Sling Models, Sling Servlets, and schedulers; worked with JavaScript and helped optimize SEO.",
+        "highlights": [],
+        "technologies": [
+          "AEM",
+          "JavaScript",
+          "Sling Models",
+          "Sling Servlets"
+        ]
+      },
+      {
+        "role": "AEM Developer",
+        "company": "Perficient",
+        "location": "",
+        "startDate": "2022-01",
+        "endDate": "2023-03",
+        "summary": "Worked across frontend and backend development on component improvements, site redesigns, and integrations with authentication tools.",
+        "highlights": [],
+        "technologies": [
+          "AEM"
+        ]
+      },
+      {
+        "role": "AEM Developer",
+        "company": "Talos Digital",
+        "location": "",
+        "startDate": "2020-09",
+        "endDate": "2021-12",
+        "summary": "Worked on a CQ5 to AEM 6.5 upgrade, writing Groovy scripts to migrate content and tags and updating dialogs, components, and backend classes.",
+        "highlights": [
+          "Developed Sling Models, Sling Servlets, backend unit tests, proxy components, Content Fragments, and Experience Fragments."
+        ],
+        "technologies": [
+          "CQ5",
+          "AEM 6.5",
+          "Groovy",
+          "JUnit",
+          "Sling"
+        ]
+      },
+      {
+        "role": "AEM Architect",
+        "company": "Softtek",
+        "location": "",
+        "startDate": "2018-07",
+        "endDate": "2020-09",
+        "summary": "Advised US clients on AEM implementations, custom components, backend services, Dispatcher configuration, Experience Fragments, and model exporters.",
+        "highlights": [
+          "Helped create AEM developer courses, preparing subjects, estimates, examples, and exercises; contributed to proposals for prospective clients."
+        ],
+        "technologies": [
+          "AEM",
+          "Dispatcher",
+          "Experience Fragments",
+          "Model Exporters"
+        ]
+      },
+      {
+        "role": "Application Development Associate Manager · AEM Expert",
+        "company": "Accenture",
+        "location": "",
+        "startDate": "2017-03",
+        "endDate": "2018-07",
+        "summary": "Supported an AEM platform with a hybrid architecture combining AEM pages and AngularJS applications, working with OSGi services, templates, and Jenkins deployments.",
+        "highlights": [
+          "Managed up to four developers and support engineers."
+        ],
+        "technologies": [
+          "AEM",
+          "OSGi",
+          "AngularJS",
+          "Jenkins"
+        ]
+      },
+      {
+        "role": "AEM Support Engineer",
+        "company": "AstraZeneca",
+        "location": "",
+        "startDate": "2016-04",
+        "endDate": "2016-10",
+        "summary": "Provided level-three support through ServiceNow, handling site and user administration, Dispatcher rules, and debugging issues with connected systems.",
+        "highlights": [],
+        "technologies": [
+          "AEM",
+          "ServiceNow",
+          "Dispatcher"
+        ]
+      },
+      {
+        "role": "AEM Developer",
+        "company": "Televisa",
+        "location": "",
+        "startDate": "2012-11",
+        "endDate": "2016-05",
+        "summary": "Developed AEM backend functionality, including Sling Servlets, Sling Models, OSGi services, HTL components, custom workflows, and schedulers.",
+        "highlights": [
+          "Managed Git branching and deployments to lower environments."
+        ],
+        "technologies": [
+          "AEM",
+          "Sling",
+          "OSGi",
+          "HTL",
+          "Git"
+        ]
+      },
+      {
+        "role": "Java Web Developer",
+        "company": "SPS / Neurika / Sodexo",
+        "location": "",
+        "startDate": "2012-03",
+        "endDate": "2012-06",
+        "summary": "Created an inactivity charge module for an online food stamp system, including views, Oracle queries, reports, and system integration.",
+        "highlights": [],
+        "technologies": [
+          "Java",
+          "JSP",
+          "PL/SQL",
+          "Oracle",
+          "Maven",
+          "HTML / CSS"
+        ]
+      },
+      {
+        "role": "PHP Web Developer",
+        "company": "Arinformacion",
+        "location": "",
+        "startDate": "2008-09",
+        "endDate": "2012-03",
+        "summary": "Developed and maintained a custom PHP CMS, creating templates, queries, scripts, sites, and database schemas.",
+        "highlights": [],
+        "technologies": [
+          "PHP",
+          "MySQL",
+          "JavaScript",
+          "XML",
+          "HTML / CSS"
+        ]
+      }
+    ]
+  },
+  "credentials": {
+    "eyebrow": "Credentials",
+    "title": "Adobe Certified Master & Expert.",
+    "issuedLabel": "Issued",
+    "renewedLabel": "Renewed",
+    "expirationLabel": "Valid until",
+    "verificationLabel": "Verify credential",
+    "items": [
+      {
+        "name": "Adobe Certified Master",
+        "specialization": "Adobe Experience Manager Sites Architect",
+        "level": "Master",
+        "badge": "assets/adobe-certified-master.png",
+        "issuer": "Adobe",
+        "issuedDate": "2020-08-08",
+        "renewedDate": "2025",
+        "expirationDate": "2027-08-14",
+        "url": "https://certification.adobe.com/credential/verify/792278ba-6645-11f0-9b2a-42010a400fc3"
+      },
+      {
+        "name": "Adobe Certified Expert",
+        "specialization": "Adobe Experience Manager Sites Developer",
+        "level": "Expert",
+        "badge": "assets/adobe-certified-expert.png",
+        "issuer": "Adobe",
+        "issuedDate": "2019-11-06",
+        "renewedDate": "2025",
+        "expirationDate": "2027-08-14",
+        "url": "https://certification.adobe.com/credential/verify/791152a2-6645-11f0-9b2a-42010a400fc3"
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What colleagues say.",
+    "sourceLabel": "View source",
+    "items": []
+  },
+  "writingCommunity": {
+    "eyebrow": "Writing & community",
+    "title": "Knowledge worth sharing.",
+    "items": []
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "A few quick answers.",
+    "items": [
+      {
+        "question": "Where are you based?",
+        "answer": "I'm based in Mexico and work remotely."
+      },
+      {
+        "question": "Are you open to remote roles?",
+        "answer": "Yes. I'm open to remote AEM architecture and development roles."
+      },
+      {
+        "question": "What was your most recent role?",
+        "answer": "My most recent role was AEM Architect at Virtusa, from August to October 2026, where I delivered a three-month AEM Sites technical enablement program for a global frontend team. Before that, I was a Lead AEM Developer at Perficient until August 2026."
+      },
+      {
+        "question": "Which professional certifications do you hold?",
+        "answer": "I hold Adobe Certified Master — Adobe Experience Manager Sites Architect and Adobe Certified Expert — Adobe Experience Manager Sites Developer. Both certifications were renewed in 2025 and are valid until 14 August 2027."
+      },
+      {
+        "question": "What do you focus on beyond AEM?",
+        "answer": "Enterprise API integration, particularly Salesforce, plus Anthropic architecture and AI-assisted development with Copilot."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's connect the next piece.",
+    "intro": "Have a digital platform to build, APIs to integrate, or a global frontend team to enable? I'd be happy to talk about your next project or remote architecture role.",
+    "emailLabel": "Email",
+    "email": "jr.maldonadoh@gmail.com",
+    "linkedinLabel": "LinkedIn",
+    "linkedinUrl": ""
+  }
+}

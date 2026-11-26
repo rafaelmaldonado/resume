@@ -1,0 +1,88 @@
+Rafael Maldonado
+AEM Architect & Technical Enablement
+Mexico - Remote | jr.maldonadoh@gmail.com
+
+SUMMARY
+I build and connect digital experience platforms with AEM Sites, Edge Delivery Services, and Adobe App Builder. My focus spans enterprise API integrations, global technical enablement, and AI-assisted engineering.
+
+TECHNICAL SKILLS
+AEM Sites; AEM as a Cloud Service (AEMaaCS); Edge Delivery Services (EDS); Adobe App Builder; Java; JavaScript; OSGi / Apache Felix; Apache Sling; CRX / Apache Jackrabbit; Sling Models; Sling Servlets; REST API Integration; Salesforce Integration; XML; Copilot - AI-assisted development; Anthropic Architecture
+
+PROFESSIONAL EXPERIENCE
+
+AEM Architect | Virtusa
+Aug 2026 - Oct 30, 2026
+Delivered a three-month AEM Sites technical enablement program for a global team of frontend developers, focused on AEM as a Cloud Service.
+Technologies: AEM Sites, AEM as a Cloud Service, Technical Enablement, Frontend Development
+
+Lead AEM Developer | Perficient
+May 2025 - Aug 2026
+Worked across AEM, Edge Delivery Services, and Adobe App Builder, combining platform development, enterprise integration, and automated testing.
+- Delivered multiple integrations with external APIs, with a particular focus on Salesforce.
+- Extended unit test coverage with JUnit and Mockito and added JaCoCo reporting to the Maven build.
+- Developed new AEM components.
+Technologies: AEM, Edge Delivery Services, Adobe App Builder, External APIs, Salesforce, JUnit, Mockito, JaCoCo, Maven
+
+Senior AEM Developer | 3Share
+Nov 2024 - Apr 2025
+Contributed to a migration from AEM 6.5 to AEM as a Cloud Service, moving content, running the Best Practices Analyzer, and updating microsites.
+Technologies: AEM 6.5, AEM as a Cloud Service, BPA
+
+AEM Developer | 3Pillar Global
+Mar 2023 - Nov 2024
+Created AEM components, Sling Models, Sling Servlets, and schedulers; worked with JavaScript and helped optimize SEO.
+Technologies: AEM, JavaScript, Sling Models, Sling Servlets
+
+AEM Developer | Perficient
+Jan 2022 - Mar 2023
+Worked across frontend and backend development on component improvements, site redesigns, and integrations with authentication tools.
+Technologies: AEM
+
+AEM Developer | Talos Digital
+Sep 2020 - Dec 2021
+Worked on a CQ5 to AEM 6.5 upgrade, writing Groovy scripts to migrate content and tags and updating dialogs, components, and backend classes.
+- Developed Sling Models, Sling Servlets, backend unit tests, proxy components, Content Fragments, and Experience Fragments.
+Technologies: CQ5, AEM 6.5, Groovy, JUnit, Sling
+
+AEM Architect | Softtek
+Jul 2018 - Sep 2020
+Advised US clients on AEM implementations, custom components, backend services, Dispatcher configuration, Experience Fragments, and model exporters.
+- Helped create AEM developer courses, preparing subjects, estimates, examples, and exercises; contributed to proposals for prospective clients.
+Technologies: AEM, Dispatcher, Experience Fragments, Model Exporters
+
+Application Development Associate Manager - AEM Expert | Accenture
+Mar 2017 - Jul 2018
+Supported an AEM platform with a hybrid architecture combining AEM pages and AngularJS applications, working with OSGi services, templates, and Jenkins deployments.
+- Managed up to four developers and support engineers.
+Technologies: AEM, OSGi, AngularJS, Jenkins
+
+AEM Support Engineer | AstraZeneca
+Apr 2016 - Oct 2016
+Provided level-three support through ServiceNow, handling site and user administration, Dispatcher rules, and debugging issues with connected systems.
+Technologies: AEM, ServiceNow, Dispatcher
+
+AEM Developer | Televisa
+Nov 2012 - May 2016
+Developed AEM backend functionality, including Sling Servlets, Sling Models, OSGi services, HTL components, custom workflows, and schedulers.
+- Managed Git branching and deployments to lower environments.
+Technologies: AEM, Sling, OSGi, HTL, Git
+
+Java Web Developer | SPS / Neurika / Sodexo
+Mar 2012 - Jun 2012
+Created an inactivity charge module for an online food stamp system, including views, Oracle queries, reports, and system integration.
+Technologies: Java, JSP, PL/SQL, Oracle, Maven, HTML / CSS
+
+PHP Web Developer | Arinformacion
+Sep 2008 - Mar 2012
+Developed and maintained a custom PHP CMS, creating templates, queries, scripts, sites, and database schemas.
+Technologies: PHP, MySQL, JavaScript, XML, HTML / CSS
+
+CERTIFICATIONS
+
+Adobe Certified Master - Adobe Experience Manager Sites Architect
+Renewed 2025; Valid until Aug 14, 2027
+https://certification.adobe.com/credential/verify/792278ba-6645-11f0-9b2a-42010a400fc3
+
+Adobe Certified Expert - Adobe Experience Manager Sites Developer
+Renewed 2025; Valid until Aug 14, 2027
+https://certification.adobe.com/credential/verify/791152a2-6645-11f0-9b2a-42010a400fc3
