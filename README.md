@@ -27,6 +27,7 @@ La carga de JSON requiere HTTP; al abrir el HTML mediante file:// aparece una in
 - [index.html](./index.html): estructura, navegación, portada, secciones y metadatos de respaldo.
 - [content.json](./content.json): contenido del CV y textos de la portada.
 - [script.js](./script.js): renderizado del contenido, validación básica, fechas, menú y seguimiento del scroll.
+- [analytics.js](./analytics.js): preferencias de privacidad y eventos para PostHog en GitHub Pages.
 - [styles.css](./styles.css): colores, tipografía, distribución adaptable, foco, movimiento reducido e impresión.
 - [favicon.svg](./favicon.svg): monograma RM con el borde rojo de la cabecera para la pestaña del navegador.
 - [assets/](./assets/): badges originales Master y Expert proporcionados por el propietario.
@@ -90,7 +91,7 @@ La paleta y las familias tipográficas se definen al principio de [styles.css](.
 
 Las certificaciones Master y Expert aparecen debajo del nombre en la portada, generadas desde los mismos datos de credenciales. El botón View credentials lleva a la sección destacada, situada inmediatamente después de Experience. La navegación sigue ese orden. Las tarjetas conservan la renovación de 2025, la vigencia y los enlaces de verificación en otra pestaña.
 
-Sora e Inter se solicitan a Google Fonts. Si la conexión no está disponible, se utilizan fuentes del sistema. No hay analítica integrada.
+Sora e Inter se solicitan a Google Fonts. Si la conexión no está disponible, se utilizan fuentes del sistema.
 
 El menú móvil expone su estado con aria-expanded, se cierra al elegir una sección y responde a Escape devolviendo el foco al botón. Las preguntas frecuentes usan details y summary nativos. Hay un enlace para saltar al contenido, estados de foco visibles y respeto por la preferencia de movimiento reducido.
 
@@ -149,12 +150,23 @@ La publicación queda a cargo del propietario:
 
 Las rutas relativas funcionan tanto en local como bajo la ruta de un repositorio de GitHub Pages. No hace falta compilación.
 
+## Analítica en GitHub Pages
+
+PostHog solo se carga en la [URL publicada](https://rafaelmaldonado.github.io/resume/) después de aceptar la analítica. El visitante puede cambiar su elección en **Privacy settings** en el pie de página. Para excluir tu navegador, abre el sitio con `?analytics=off`. La exclusión se guarda en ese navegador.
+
+En **Web Analytics** se pueden consultar visitas, procedencia, campañas UTM, dispositivo y ubicación aproximada. En **Activity** se pueden comprobar los eventos del CV.
+
+| Evento | Datos |
+| --- | --- |
+| `cv_section_viewed` | Nombre de la sección y segundos que ocupó la zona de lectura con la pestaña visible. Se envía al salir de la sección o dejar la pestaña. |
+| `cv_scroll_depth` | Hitos de 25, 50, 75 y 100 por ciento del recorrido de scroll. |
+| `cv_download_clicked` | Clic en PDF o TXT desde la página. |
+| `cv_contact_clicked` | Clic para abrir el correo, en la portada o en Contact. |
+| `cv_credential_clicked` | Certificación cuyo enlace se pulsó. |
+
+La analítica incluye mapas de calor. Para recibir reproducciones, activa **Record user sessions** en el proyecto de PostHog. El sitio solo grabará si el visitante también marca la casilla de grabaciones. Se enmascaran el texto y los campos de entrada y se omite la captura de consola y de cabeceras y cuerpos de peticiones.
+
 ## Pendientes
 
 - Fotografía y perfil de LinkedIn.
 - Testimonios y publicaciones reales, si se quieren incluir.
-- Tarea 5: acordar las medidas de privacidad y rastreo antes de publicar.
-- Tarea 6: confirmar GoatCounter o Plausible antes de integrar analítica.
-- Tarea 7: revisión final en dispositivos y publicación.
-
-Las tareas originales 0–4 y la integración del contenido están implementadas. No se ha publicado el sitio ni se han integrado proveedores de analítica.

@@ -10,8 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap">
-    <link rel="stylesheet" href="styles.css?v=20261125-resume">
-    <script src="script.js?v=20261125-resume" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20261126-analytics">
+    <script src="analytics.js?v=20261126-analytics" defer></script>
+    <script src="script.js?v=20261126-analytics" defer></script>
   </head>
   <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -95,8 +96,21 @@
     <footer class="site-footer">
       <div class="container footer-layout">
         <p>© 2026 <span id="footer-name">Rafael Maldonado</span></p>
+        <button id="privacy-settings" type="button" aria-controls="analytics-preferences" aria-expanded="false" hidden>Privacy settings</button>
         <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
       </div>
     </footer>
+    <aside id="analytics-preferences" class="analytics-preferences ph-no-capture" aria-labelledby="analytics-title" hidden>
+      <h2 id="analytics-title">Analytics preferences</h2>
+      <p>With your permission, PostHog processes visit details, approximate location, and interactions to help improve this site. Your browser stores your choice.</p>
+      <form id="analytics-choice">
+        <label><input id="analytics-replay" type="checkbox"> Also allow session recordings that replay clicks and scrolling.</label>
+        <div class="analytics-actions">
+          <button class="button button-secondary" type="submit" value="off">Decline</button>
+          <button class="button button-primary" type="submit" value="allow">Allow analytics</button>
+        </div>
+      </form>
+      <p class="analytics-policy">Change your choice in Privacy settings. <a href="https://posthog.com/privacy">PostHog privacy policy</a></p>
+    </aside>
   </body>
 </html>

@@ -325,6 +325,7 @@ async function loadContent() {
     revealContent();
     document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: "instant" });
     scheduleScrollUpdate();
+    document.dispatchEvent(new Event("cv-content-ready"));
   } catch {
     status.textContent = "The résumé could not be loaded. Please reload the page.";
   }

@@ -164,6 +164,19 @@ figcaption { margin-top: 1rem; color: var(--muted); font-size: 0.85rem; }
 .site-footer { padding-block: 1.5rem; border-top: 1px solid var(--line); background: var(--bg-alt); }
 .footer-layout { display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--muted); font-size: 0.7rem; }
 .footer-layout a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: none; white-space: nowrap; }
+.footer-layout button { min-height: 2.75rem; padding: 0; border: 0; background: none; color: inherit; text-decoration: underline; text-underline-offset: 0.25em; }
+.analytics-preferences {
+  position: fixed; z-index: 25; right: 1rem; bottom: 1rem;
+  width: min(25rem, calc(100% - 2rem)); max-height: calc(100dvh - 2rem); overflow: auto;
+  padding: 1.25rem; border: 1px solid var(--line); border-radius: 0.85rem;
+  background: var(--surface); box-shadow: var(--shadow); font-size: 0.8rem;
+}
+.analytics-preferences h2 { margin: 0 0 0.6rem; font-size: 1.05rem; }
+.analytics-preferences label { display: flex; align-items: flex-start; gap: 0.5rem; margin-block: 0.75rem; }
+.analytics-preferences input { flex-shrink: 0; margin: 0.3rem 0 0; accent-color: var(--accent-text); }
+.analytics-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.analytics-actions .button { min-height: 2.75rem; padding-inline: 0.9rem; }
+.analytics-policy { margin-top: 0.65rem; color: var(--muted); font-size: 0.72rem; }
 
 @media (max-width: 56rem) {
   .menu-toggle { display: grid; }
@@ -227,7 +240,7 @@ figcaption { margin-top: 1rem; color: var(--muted); font-size: 0.85rem; }
 
 @media print {
   :root { --bg: #fff; --bg-alt: #fff; --text: #111; --muted: #444; --surface: #fff; --surface-2: #fff; --line: #ddd; --accent-text: #9b1000; color-scheme: light; }
-  .site-header, .site-footer, .hero-actions, .hero-resources, .profile-panel, .skip-link { display: none; }
+  .site-header, .site-footer, .hero-actions, .hero-resources, .profile-panel, .skip-link, .analytics-preferences { display: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero { padding-top: 0; }
   .hero-layout { display: block; }
